@@ -1,16 +1,16 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom';
-import countriesData from '../../countries.json'
+//import countriesData from '../../countries.json'
 
 
-function CountryDetails() {
+function CountryDetails(props) {
     const { alpha3Code } = useParams();
-    const foundCountry = countriesData.find((oneCountry) => {
+    const foundCountry = props.countries.find((oneCountry) => {
         return oneCountry.alpha3Code === alpha3Code;
       });
   
   const getCountryName = (alpha3Code) => {
-    const foundCountryName = countriesData.find((oneCountry) => {
+    const foundCountryName = props.countries.find((oneCountry) => {
       return oneCountry.alpha3Code === alpha3Code;
     });
     return foundCountryName.name.common;
@@ -18,7 +18,7 @@ function CountryDetails() {
 
   return ( 
  <div key={foundCountry.alpha3Code} className="col-7">
-    <img style={{width:'200px'}} src={` https://flagpedia.net/data/flags/icon/72x54/${foundCountry.alpha2Code.toLowerCase()}.png`} alt={foundCountry.name.official} />
+    <img style={{width:'100px'}} src={` https://flagpedia.net/data/flags/icon/72x54/${foundCountry.alpha2Code.toLowerCase()}.png`} alt={foundCountry.name.official} />
             <h1>{foundCountry.name.official}</h1>
             {!foundCountry && <h1>No Country Found!</h1>}
             {foundCountry && (
