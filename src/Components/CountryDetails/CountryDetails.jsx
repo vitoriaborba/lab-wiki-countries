@@ -8,14 +8,22 @@ function CountryDetails() {
     const foundCountry = countriesData.find((oneCountry) => {
         return oneCountry.alpha3Code === alpha3Code;
       });
+  
+  const getCountryName = (alpha3Code) => {
+    const foundCountryName = countriesData.find((oneCountry) => {
+      return oneCountry.alpha3Code === alpha3Code;
+    });
+    return foundCountryName.name.common;
+  }
 
   return ( 
  <div key={foundCountry.alpha3Code} className="col-7">
-            <h1>France</h1>
+    <img style={{width:'200px'}} src={` https://flagpedia.net/data/flags/icon/72x54/${foundCountry.alpha2Code.toLowerCase()}.png`} alt={foundCountry.name.official} />
+            <h1>{foundCountry.name.official}</h1>
             {!foundCountry && <h1>No Country Found!</h1>}
             {foundCountry && (
                 <>
-              <table class="table">
+              <table className="table">
               <thead></thead>
               <tbody>
                 <tr>
@@ -32,9 +40,9 @@ function CountryDetails() {
                 <tr>
                   <td>Borders</td>
                   <td>
-                    <ul>
+                    <ul style={{listStyle:'none'}}>
                         {foundCountry.borders.map((country) => {
-                            return   <li><Link to={`/${country}`}>{country}</Link></li>
+                            return   <li><Link to={`/${country}`}>{getCountryName(country)}</Link></li>
                         })}
                      
                     </ul>

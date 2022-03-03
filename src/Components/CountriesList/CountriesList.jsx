@@ -15,7 +15,7 @@ function CountriesList(props) {
                       to={`/${country.alpha3Code}`}
                     >
                       <img src={` https://flagpedia.net/data/flags/icon/72x54/${country.alpha2Code.toLowerCase()}.png`} alt={country.name.official} />
-                      {country.name.common}
+                      <h4>{country.name.common}</h4>
                     </Link>
                               
          );
